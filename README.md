@@ -38,8 +38,31 @@ Drop answers to these in a new file (`INTAKE.md`, an issue, whatever's easiest) 
     - **GitHub Pages** — free, dead simple for a static site, ties directly to this repo.
     - **Cloudflare Pages** — free, fast, easy custom domain + SSL, slightly more flexible if we want serverless functions later (e.g. a contact form).
     - Either works fine for a site this size; Cloudflare Pages has a slight edge if a contact form or any dynamic bits come up later.
-11. **Domain** — does he already own bbsystems.us (or similar), or does that need registering?
+11. **Domain** — he already owns bbsystems.us; it's currently just routing to the Google Maps listing. Ryan will handle re-pointing it once hosting is picked (see below).
 12. **Contact form** — does he want visitors to be able to submit a form, or is a phone/email link enough?
+
+## Domain setup (Ryan handling this part)
+
+Cruz owns **bbsystems.us** already — it's just redirecting to the Google Maps listing right now, not doing anything DNS-wise for a real site. Once hosting is decided, here's what's needed to point it at the new site instead. Cruz doesn't need to do the technical work himself — he just needs to either hand over registrar/DNS access, or make a couple of DNS edits Ryan hands him.
+
+**What to get from Cruz first:**
+- Who the domain is registered with (GoDaddy, Namecheap, Google Domains/Squarespace, etc.) and whether he still has login access.
+- Either: (a) log in and add Ryan as an authorized user / grant DNS access, or (b) Ryan gives him the exact DNS records to paste in, or (c) Cruz gives Ryan temporary login credentials directly (least preferred — avoid handling his password if possible, have him add the records himself or grant proper access instead).
+
+### If hosting on GitHub Pages
+1. In the repo: Settings → Pages → set the custom domain to `bbsystems.us` (and `www.bbsystems.us` if desired). GitHub generates a `CNAME` file in the repo automatically.
+2. At the registrar, set DNS records at the apex (`bbsystems.us`):
+   - Four `A` records pointing to GitHub's Pages IPs: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - Optional `CNAME` record for `www` → `rh7112.github.io`
+3. Back in repo Settings → Pages, enable "Enforce HTTPS" once DNS propagates (can take a few hours).
+
+### If hosting on Cloudflare Pages
+1. Create/log into a Cloudflare account, add `bbsystems.us` as a site.
+2. Cloudflare will want the domain's **nameservers** changed at the registrar to Cloudflare's (e.g. `xxx.ns.cloudflare.com`) — this moves DNS management to Cloudflare entirely, which also unlocks their free CDN/SSL. This is the biggest step and needs either registrar access or Cruz making the nameserver change himself.
+3. Once the domain is active in Cloudflare, create a Pages project connected to this repo, then add `bbsystems.us` as a Custom Domain on the Pages project — Cloudflare wires up the DNS records automatically since it now controls the zone.
+4. SSL/HTTPS is automatic through Cloudflare.
+
+Cloudflare Pages requires the bigger handoff (nameserver change) but is less fiddly afterward and gives us CDN/analytics/forms for free. GitHub Pages requires no nameserver change (just a few DNS records at the existing registrar) but is more bare-bones. Worth deciding hosting first, then only touching the domain once.
 
 ## Contributing
 
