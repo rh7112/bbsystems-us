@@ -4,9 +4,7 @@ Website project for **BBSystems.US** — IT Consulting, PC Repair, and Custom Co
 
 ## First things first, Cruz
 
-So Ryan can add you as a collaborator on this repo, send him:
-1. Your **GitHub username** (or create an account at [github.com](https://github.com) if you don't have one yet) — still needed
-2. ~~An email address~~ — got it: `bbsystemsus@gmail.com`
+You've been invited to this repo as a collaborator — check your email or [github.com/notifications](https://github.com/notifications) for the invite and accept it. Once you're in, you can push files, open issues, and edit this README directly.
 
 ## Known business info (from Google Maps listing)
 
@@ -50,13 +48,13 @@ This is the big open question — do NOT build any of this until he answers. It 
 See "Keeping the marketplace piece free" below for what's actually realistic at $0/month.
 
 ### Technical
-9. **Framework** — he's used WordPress before but isn't locked into it. Given this is a small, mostly-static business site (services, contact, maybe a portfolio of builds), a static site generator (e.g. Astro, 11ty, or even a plain static HTML/CSS build) is likely simpler to host and maintain than WordPress. Worth asking if he has a preference or wants to learn something specific.
-10. **Hosting** — not decided yet. Leading candidates:
+15. **Framework** — he's used WordPress before but isn't locked into it. Given this is a small, mostly-static business site (services, contact, maybe a portfolio of builds), a static site generator (e.g. Astro, 11ty, or even a plain static HTML/CSS build) is likely simpler to host and maintain than WordPress. Worth asking if he has a preference or wants to learn something specific.
+16. **Hosting** — not decided yet. Leading candidates:
     - **GitHub Pages** — free, dead simple for a static site, ties directly to this repo.
     - **Cloudflare Pages** — free, fast, easy custom domain + SSL, slightly more flexible if we want serverless functions later (e.g. a contact form).
     - Either works fine for a site this size; Cloudflare Pages has a slight edge if a contact form or any dynamic bits come up later.
-11. **Domain** — he already owns bbsystems.us; it's currently just routing to the Google Maps listing. Ryan will handle re-pointing it once hosting is picked (see below).
-12. **Contact form** — does he want visitors to be able to submit a form, or is a phone/email link enough?
+17. **Domain** — he already owns bbsystems.us; it's currently just routing to the Google Maps listing. Ryan will handle re-pointing it once hosting is picked (see below).
+18. **Contact form** — does he want visitors to be able to submit a form, or is a phone/email link enough?
 
 ## Domain setup (Ryan handling this part)
 
