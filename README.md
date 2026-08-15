@@ -2,6 +2,12 @@
 
 Website project for **BBSystems.US** — IT Consulting, PC Repair, and Custom Computer builds, run by Cruz Gregory in Pierceton, IN.
 
+## First things first, Cruz
+
+So Ryan can add you as a collaborator on this repo, send him:
+1. Your **GitHub username** (or create an account at [github.com](https://github.com) if you don't have one yet)
+2. An **email address** you want used for project stuff (invite notifications, etc.)
+
 ## Known business info (from Google Maps listing)
 
 - **Name:** BBSystems.US — IT Consulting, PC Repair, Custom Computers & More!
