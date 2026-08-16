@@ -1,0 +1,28 @@
+
+1.    Logo / brand assets — does he have any, or do we need to make something simple? Can be found at BBSystems.US and has been uploaded to github
+ 2.   Services list — what should be on the site? (e.g. PC building/repair, IT consulting, managed services, networking, on-site vs remote, business vs residential, etc.) Currently available at BBSystems.US or the following: 
+
+"Call/Text to make Appointment or Inquiry
+
+Hardware Solutions:
+•PC Repair, Upgrade Hardware, Data Recovery, Backup or Destruction!
+•Custom built computers via user's computing needs! -Ask about our current Bully Builds in stock!
+•3D Printing!
+
+IT Support Remote and Local:
+•Support Calls: Help, Advice, Service, FAQ, Remote Access
+•Installing and Configuring Computer Hardware, Software, Systems, Networks, Printers, etc
+•Repair to Breakdowns/Failures in System Hardware
+
+Data Science Solutions:
+•Big/Large Database Design, Querying, Extracting, Uploading, Automating, Analysis, Mass Modifying, Deleting & More!
+
+------
+Have a question about how we can service you? Call/Txt us Today!"
+
+  3.  Photos — of builds, the shop, before/afters — anything usable? Available on BBSystems.US and some uploaded to github
+   4. Pricing — list rates/packages, or keep it "contact for quote"?  Pricing is determined in real time with customer
+    5.About / bio blurb — how much does he want to share about himself and the business? Nothing about myself, only the business
+    6.Service area — just Pierceton, or a wider radius (Warsaw, Kosciusko County, etc.)? 90 Mile Radius for on-sight tech support, Entire USA for Remote Support
+   7. Contact preference — phone, email, contact form, social media? BBSystems.US
+  8.  Testimonials/reviews — okay to pull quotes from Google reviews, or does he want to supply his own? BBSystems.US 
