@@ -20,7 +20,9 @@ This is all public info pulled from the Google Maps listing on 2026-08-15. Cruz 
 
 ## Status
 
-Nothing built yet. This repo exists so Cruz has a place to drop content, and so we have a home to build against once we've nailed down direction.
+A first pass at the site is underway in [`web/`](./web) — a SvelteKit app (static-rendered, so it can deploy to either GitHub Pages or Cloudflare Pages once hosting is picked). It uses Cruz's answers from `Questionaire.txt` and the photos/logo he uploaded to `assets/`: services copy, service area, and a build gallery are in; there's no shop/cart since he hasn't answered the marketplace questions yet (Q9-14) and his pricing answer ("determined live with customer") points away from needing one anyway. See [`web/README.md`](./web/README.md) for how to run it locally.
+
+Still waiting on Cruz for the marketplace (Q9-14) and remaining technical (Q15-18) questions below before finalizing hosting/domain and deciding if any e-commerce is needed.
 
 ## What we need from Cruz
 
