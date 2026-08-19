@@ -26,9 +26,9 @@ Still waiting on Cruz for the marketplace (Q9-14) and remaining technical (Q15-1
 
 ## What we need from Cruz
 
-Drop answers to these in a new file (`INTAKE.md`, an issue, whatever's easiest) or just talk it through with Ryan:
+**Status: Questions 1–8 are answered — thank you! See `Questionaire.txt`.** Everything from Question 9 on is still open — no rush, answer whenever's convenient. Drop answers in `Questionaire.txt`, a new file, an issue, or just talk it through with Ryan.
 
-### Content
+### Content — ✅ answered, see `Questionaire.txt`
 1. Logo / brand assets — does he have any, or do we need to make something simple?
 2. Services list — what should be on the site? (e.g. PC building/repair, IT consulting, managed services, networking, on-site vs remote, business vs residential, etc.)
 3. Photos — of builds, the shop, before/afters — anything usable?
@@ -38,7 +38,7 @@ Drop answers to these in a new file (`INTAKE.md`, an issue, whatever's easiest) 
 7. Contact preference — phone, email, contact form, social media?
 8. Testimonials/reviews — okay to pull quotes from Google reviews, or does he want to supply his own?
 
-### Marketplace / selling online
+### Marketplace / selling online — ⬜ still open
 This is the big open question — do NOT build any of this until he answers. It changes the hosting/framework decision.
 9. Does he actually want to **sell things online** (pre-built PCs, parts, accessories), or is the site more "here's what I do, call/message me for a quote"? A lot of small IT/repair shops don't need a real cart — a services list + contact form covers it.
 10. If selling: how many products, roughly? A handful of pre-built PC configs is very different from a real parts catalog with stock levels.
@@ -49,14 +49,22 @@ This is the big open question — do NOT build any of this until he answers. It 
 
 See "Keeping the marketplace piece free" below for what's actually realistic at $0/month.
 
-### Technical
-15. **Framework** — he's used WordPress before but isn't locked into it. Given this is a small, mostly-static business site (services, contact, maybe a portfolio of builds), a static site generator (e.g. Astro, 11ty, or even a plain static HTML/CSS build) is likely simpler to host and maintain than WordPress. Worth asking if he has a preference or wants to learn something specific.
+### Technical — ⬜ still open
+15. ~~**Framework**~~ — decided: the site is being built in **Svelte**.
 16. **Hosting** — not decided yet. Leading candidates:
     - **GitHub Pages** — free, dead simple for a static site, ties directly to this repo.
     - **Cloudflare Pages** — free, fast, easy custom domain + SSL, slightly more flexible if we want serverless functions later (e.g. a contact form).
     - Either works fine for a site this size; Cloudflare Pages has a slight edge if a contact form or any dynamic bits come up later.
 17. **Domain** — he already owns bbsystems.us; it's currently just routing to the Google Maps listing. Ryan will handle re-pointing it once hosting is picked (see below).
 18. **Contact form** — does he want visitors to be able to submit a form, or is a phone/email link enough?
+
+### One more, totally optional — the name
+You told us you'd rather keep the site business-only, no personal bio, no life story — and that's exactly how it's being built. This is a separate, smaller thing: right now nothing on the site explains what "BB" stands for, and it's purely a branding question, not a personal one. Totally your call, no wrong answer:
+- **Leave it unexplained** — plenty of businesses do, the logo carries the brand fine on its own.
+- **One line, no story:** something like "BB = Bully-Built" near the logo or in the footer.
+- **A little more:** a short caption on the logo/dog photo itself (not a bio, just naming what's in the image), if that ever feels right.
+
+Whatever you're comfortable with — including nothing — works for us.
 
 ## Domain setup (Ryan handling this part)
 
