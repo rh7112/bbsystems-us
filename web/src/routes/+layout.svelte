@@ -31,6 +31,7 @@
 			<nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
 				<a href="#services" class="transition hover:text-cyan-400">Services</a>
 				<a href="#builds" class="transition hover:text-cyan-400">Builds</a>
+				<a href="#hosting" class="transition hover:text-cyan-400">Web Hosting</a>
 				<a href="#service-area" class="transition hover:text-cyan-400">Service Area</a>
 				<a href="#contact" class="transition hover:text-cyan-400">Contact</a>
 			</nav>
@@ -70,6 +71,7 @@
 			<nav class="flex flex-col gap-1 border-t border-slate-800 bg-slate-950 px-4 py-3 text-sm font-medium text-slate-300 md:hidden">
 				<a href="#services" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Services</a>
 				<a href="#builds" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Builds</a>
+				<a href="#hosting" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Web Hosting</a>
 				<a href="#service-area" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Service Area</a>
 				<a href="#contact" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Contact</a>
 				<a href="tel:{phoneHref}" class="mt-2 rounded-full bg-cyan-500 px-4 py-2 text-center font-semibold text-slate-950">

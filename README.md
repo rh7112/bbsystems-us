@@ -92,6 +92,18 @@ Both Ryan and Cruz want this at $0/month — Ryan's doing the build for word-of-
 
 Bottom line: push toward "contact for quote" or Stripe/PayPal links unless Cruz specifically needs more — that's what keeps this both free and low-maintenance for him long-term.
 
+## Web Hosting service (new, 2026-08-21)
+
+A new service line, live on the site as the "Web Hosting" section (`#hosting`): BBSystems.US now offers to design/build and host websites for customers, not just PC/IT services.
+
+**Business model — internal notes, not published on the site:**
+- Cruz gets a **finder's fee** for referring hosting/website clients — amount not yet decided between Ryan and Cruz, so nothing about this appears on the public site. Sort out the actual number separately.
+- Public pricing is a flat, bundled monthly rate covering hosting + maintenance together (no separate line items): **$30/mo personal, $50/mo business**.
+- The one-time website build/design cost is **not fixed** — quoted per project based on scope, same "contact for quote" pattern as the rest of the site. Matches how PC builds/IT work already get priced here.
+
+**Still needed — a support inbox for hosting clients:**
+Plan is a free-tier helpdesk (Freshdesk or Zoho Desk free plan) so hosting client requests come in as tickets instead of loose emails. I can't sign up for a third-party SaaS account on anyone's behalf — either Cruz or Ryan needs to create the free account directly. Once it exists, send me the helpdesk's inbound support-ticket email address (e.g. `something@yourcompany.freshdesk.com`) and I'll wire up Cloudflare Email Routing so a dedicated address (e.g. `hosting@bbsystems.us`) forwards straight into it — same mechanism as the `support@`/`admin@` email restoration above, just a different destination.
+
 ## Contributing
 
 Cruz has push access to this repo — feel free to add files, images, notes, or open issues directly. No need to ask permission to drop things in; we'll sort/organize as it fills in.

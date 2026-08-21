@@ -154,6 +154,35 @@
 	</div>
 </section>
 
+<!-- Web Hosting -->
+<section id="hosting" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+	<h2 class="text-3xl font-bold text-white">Website Design &amp; Hosting</h2>
+	<p class="mt-3 max-w-2xl text-slate-400">
+		Need a website? We'll design, build, and host it for you. The build itself is quoted based on what you need —
+		call or text to talk through your project. Hosting keeps your site online, maintained, and monitored for a flat
+		monthly rate.
+	</p>
+
+	<div class="mt-12 grid gap-8 md:grid-cols-2">
+		<div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8">
+			<h3 class="text-xl font-semibold text-cyan-400">Personal</h3>
+			<p class="mt-2 text-3xl font-bold text-white">$30<span class="text-base font-normal text-slate-400">/mo</span></p>
+			<p class="mt-4 text-sm text-slate-300">Hosting and maintenance for personal sites, portfolios, and blogs.</p>
+		</div>
+
+		<div class="rounded-2xl border border-cyan-500/50 bg-slate-900/50 p-8">
+			<h3 class="text-xl font-semibold text-cyan-400">Business</h3>
+			<p class="mt-2 text-3xl font-bold text-white">$50<span class="text-base font-normal text-slate-400">/mo</span></p>
+			<p class="mt-4 text-sm text-slate-300">Hosting and maintenance for business and storefront sites.</p>
+		</div>
+	</div>
+
+	<p class="mt-8 text-sm text-slate-400">
+		<a href="#contact" class="font-semibold text-cyan-400 hover:underline">Get in touch</a> to talk about your project
+		and get a build quote.
+	</p>
+</section>
+
 <!-- Service area + reviews -->
 <section id="service-area" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
 	<div class="grid gap-8 md:grid-cols-2">
