@@ -20,9 +20,11 @@ This is all public info pulled from the Google Maps listing on 2026-08-15. Cruz 
 
 ## Status
 
-A first pass at the site is underway in [`web/`](./web) — a SvelteKit app (static-rendered, so it can deploy to either GitHub Pages or Cloudflare Pages once hosting is picked). It uses Cruz's answers from `Questionaire.txt` and the photos/logo he uploaded to `assets/`: services copy, service area, and a build gallery are in; there's no shop/cart since he hasn't answered the marketplace questions yet (Q9-14) and his pricing answer ("determined live with customer") points away from needing one anyway. See [`web/README.md`](./web/README.md) for how to run it locally.
+The site is **live** on Cloudflare Pages, hosted under Cruz's own Cloudflare account: https://bbsystems-us-5o2.pages.dev (temporary `.pages.dev` URL — `bbsystems.us` itself isn't pointed at it yet, see "Domain setup" below). It's a SvelteKit app in [`web/`](./web), built from Cruz's answers in `Questionaire.txt` and the photos/logo he uploaded to `assets/`: services copy, service area, and a build gallery are in. There's no shop/cart since he hasn't answered the marketplace questions yet (Q9-14) and his pricing answer ("determined live with customer") points away from needing one anyway. See [`web/README.md`](./web/README.md) for how to run it locally.
 
-Still waiting on Cruz for the marketplace (Q9-14) and remaining technical (Q15-18) questions below before finalizing hosting/domain and deciding if any e-commerce is needed.
+Auto-deploy on push is wired up via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) (GitHub Actions + `wrangler-action`) — chosen over Cloudflare's native "Connect to Git" specifically because the Cloudflare account (Cruz's) and the GitHub repo (Ryan's) are owned by different people; a plain API-token secret sidesteps the cross-account GitHub-App-authorization issue that approach would've hit. **Still needs:** the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets added to this repo before it'll actually run — see "Domain setup" below.
+
+Still waiting on Cruz for the marketplace (Q9-14) and remaining technical (Q17-18) questions below.
 
 ## What we need from Cruz
 
@@ -51,11 +53,8 @@ See "Keeping the marketplace piece free" below for what's actually realistic at 
 
 ### Technical — ⬜ still open
 15. ~~**Framework**~~ — decided: the site is being built in **Svelte**.
-16. **Hosting** — not decided yet. Leading candidates:
-    - **GitHub Pages** — free, dead simple for a static site, ties directly to this repo.
-    - **Cloudflare Pages** — free, fast, easy custom domain + SSL, slightly more flexible if we want serverless functions later (e.g. a contact form).
-    - Either works fine for a site this size; Cloudflare Pages has a slight edge if a contact form or any dynamic bits come up later.
-17. **Domain** — he owns bbsystems.us, but its DNS is currently broken (points nowhere real) and there's no email routing configured. Ryan is handling this — see "Domain setup" below, including a new question about Cloudflare access that's now the key blocker.
+16. ~~**Hosting**~~ — decided: **Cloudflare Pages**, under Cruz's own Cloudflare account (the one bbsystems.us's domain now lives in). Live at a temporary `.pages.dev` URL — see Status above.
+17. **Domain** — resolved: the nameservers were already Cruz's own Cloudflare account (confirmed 2026-08-21, after Cruz upgraded Ryan's permissions there). Still open: attaching `bbsystems.us` as the Pages project's custom domain, and finishing the GitHub Actions secrets — both dashboard/one-time steps, see "Domain setup" below.
 18. **Contact form** — does he want visitors to be able to submit a form, or is a phone/email link enough?
 
 ### One more, totally optional — the name
@@ -68,40 +67,17 @@ Whatever you're comfortable with — including nothing — works for us.
 
 ## Domain setup (Ryan handling this part)
 
-**Update (2026-08-21) — checked the live WHOIS/DNS for bbsystems.us, and it changes the picture:**
+**Resolved (2026-08-21):** the domain's nameservers were already pointed at Cloudflare, and it turned out to be **Cruz's own Cloudflare account** — the same one bbsystems.us was transferred into when Squarespace (formerly Google Domains) handed it off. Cruz added Ryan as a member of that account; Ryan's role initially only had DNS-level access, which blocked creating a Pages project, so Cruz added the **`Workers Platform Admin`** role to fix that. With that, the site is now deployed:
 
-- **Registrar is Squarespace Domains II LLC.** This matches Cruz's account of what happened: Google sold Google Domains to Squarespace in 2023, and bbsystems.us came along with that sale. The domain itself is registered fine — status active, registrant is Monte "Cruz" Gregory, expires December 21, 2026. It was not actually lost/resold to someone else.
-- **Nameservers already point to Cloudflare** (`anirban.ns.cloudflare.com` / `oaklyn.ns.cloudflare.com`) — DNS for this domain is currently managed through *some* Cloudflare account, not through Squarespace directly. This is a big deal: if that account is still reachable, the "biggest step" of moving to Cloudflare Pages (the nameserver handoff described below) is likely **already done**.
-- **The current A record is a private IP** (`192.168.68.50`) — not a real public address. The domain doesn't actually resolve to anything reachable on the internet right now. It is *not* redirecting to the Google Maps listing the way we'd assumed — it's just broken/pointing nowhere.
-- **There's no MX record at all** — no mail routing configured. This lines up exactly with Cruz losing access to `support@bbsystems.us` and `admin@bbsystems.us`: whatever handled that mail (most likely free email forwarding or a Workspace account bundled with the old Google Domains setup) never carried over to Squarespace, or access to it broke in that migration.
-
-**New question for Cruz, and it's now the most important one:** do you have access to the Cloudflare account that's currently running DNS for bbsystems.us (the one with nameservers `anirban.ns.cloudflare.com`/`oaklyn.ns.cloudflare.com`)? If yes, that one login unlocks both fixing the site's DNS *and* free email restoration (see below) in one place. If you don't recognize it or can't get back in, that's fine too — we can disconnect it and start DNS fresh, just a bit more setup work.
-
-**What to get from Cruz first:**
-- Whether he can log into that existing Cloudflare account (check `mcgregory08@gmail.com`/`bbsystemsus@gmail.com` for old Cloudflare welcome/verification emails if unsure).
-- Separately, his **Squarespace** login (the actual registrar) — needed either way, since that's where nameservers get set if we start over, and it's also the account of record for the domain itself now.
-- Either: (a) he logs in and adds Ryan as an authorized user / grants access, or (b) Ryan gives him exact steps/records to paste in himself, or (c) Cruz gives Ryan temporary login credentials directly (least preferred — avoid handling his password if possible, have him add the records himself or grant proper access instead).
+- ✅ Pages project `bbsystems-us` created in Cruz's Cloudflare account
+- ✅ Site built and deployed — live at https://bbsystems-us-5o2.pages.dev
+- ✅ `.github/workflows/deploy.yml` added for auto-deploy on every push to `master`, via GitHub Actions + `wrangler-action` (not Cloudflare's native "Connect to Git" — that needs a GitHub identity with admin rights on the repo, which gets awkward since the Cloudflare account and the GitHub repo belong to different people; a plain API-token secret avoids that entirely)
+- ⬜ **Still needed:** a scoped Cloudflare API token, added as this repo's `CLOUDFLARE_API_TOKEN` GitHub secret (plus `CLOUDFLARE_ACCOUNT_ID`, not secret but stored the same way per Cloudflare's own convention: `d44f11a5b3c8df4eaac797b14f4dfd48`) — until that's set, pushes to `master` won't actually deploy. Either Cruz or Ryan can create the token now that Ryan has `Workers Platform Admin`: Cloudflare dashboard → **My Profile → API Tokens → Create Token**, scoped to Account → Cloudflare Pages → Edit, for Cruz's account. Then run `gh secret set CLOUDFLARE_API_TOKEN --repo rh7112/bbsystems-us` (prompts for the value — never paste API tokens into chat/README/commits).
+- ⬜ **Still needed:** attach `bbsystems.us` as the Pages project's custom domain — this is dashboard-only, no CLI/API path exists for it. Cloudflare dashboard → **Workers & Pages → bbsystems-us → Custom domains → Set up a domain** → enter `bbsystems.us`. Since the zone and the Pages project are now in the same account, Cloudflare wires up the DNS automatically.
 
 ### Restoring support@ and admin@ email (free)
 
-Once there's access to whichever Cloudflare account controls the zone (existing or freshly set up), **Cloudflare Email Routing** is the free fix for the lost email addresses: it forwards `support@bbsystems.us` and `admin@bbsystems.us` straight to an existing inbox (e.g. his working `bbsystemsus@gmail.com`) with no paid mailbox, no Workspace subscription, and no server to run. Cruz keeps replying from his normal Gmail; the forward is invisible to whoever emails him. This also means he can go back to any of the "different sites" that have `admin@bbsystems.us` on file and actually receive their password-reset emails again.
-
-This is a separate, lower-effort task from the hosting decision below — it just needs DNS access, not a finished site. Worth doing as soon as Cloudflare access is sorted, even before hosting is finalized.
-
-### If hosting on GitHub Pages
-1. In the repo: Settings → Pages → set the custom domain to `bbsystems.us` (and `www.bbsystems.us` if desired). GitHub generates a `CNAME` file in the repo automatically.
-2. At the registrar, set DNS records at the apex (`bbsystems.us`):
-   - Four `A` records pointing to GitHub's Pages IPs: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - Optional `CNAME` record for `www` → `rh7112.github.io`
-3. Back in repo Settings → Pages, enable "Enforce HTTPS" once DNS propagates (can take a few hours).
-
-### If hosting on Cloudflare Pages
-1. Create/log into a Cloudflare account, add `bbsystems.us` as a site.
-2. Cloudflare will want the domain's **nameservers** changed at the registrar to Cloudflare's (e.g. `xxx.ns.cloudflare.com`) — this moves DNS management to Cloudflare entirely, which also unlocks their free CDN/SSL. This is the biggest step and needs either registrar access or Cruz making the nameserver change himself.
-3. Once the domain is active in Cloudflare, create a Pages project connected to this repo, then add `bbsystems.us` as a Custom Domain on the Pages project — Cloudflare wires up the DNS records automatically since it now controls the zone.
-4. SSL/HTTPS is automatic through Cloudflare.
-
-Cloudflare Pages requires the bigger handoff (nameserver change) but is less fiddly afterward and gives us CDN/analytics/forms for free. GitHub Pages requires no nameserver change (just a few DNS records at the existing registrar) but is more bare-bones. Worth deciding hosting first, then only touching the domain once.
+Now that Cruz's Cloudflare account is confirmed reachable, this is fully actionable: **Cloudflare Email Routing** forwards `support@bbsystems.us` and `admin@bbsystems.us` to an existing inbox (e.g. `bbsystemsus@gmail.com`) for free — no paid mailbox, no Workspace subscription. Dashboard → the `bbsystems.us` zone → **Email → Email Routing** → enable, add both addresses as forwards. Worth doing whenever — doesn't depend on the custom-domain step above.
 
 ## Keeping the marketplace piece free
 
