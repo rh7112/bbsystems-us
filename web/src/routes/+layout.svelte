@@ -16,6 +16,7 @@
 		name="description"
 		content="IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide."
 	/>
+	<script type="module" src="https://cdn.jsdelivr.net/gh/rh7112/hurd-footer@main/hurd-footer.js"></script>
 </svelte:head>
 
 <div class="flex min-h-screen flex-col bg-slate-950 text-slate-100">
@@ -112,4 +113,9 @@
 			&copy; {new Date().getFullYear()} BBSystems.US. All rights reserved.
 		</div>
 	</footer>
+
+	<hurd-footer
+		tagline="BBSystems.US — IT Consulting, PC Repair & Custom Computers"
+		link-href="https://ryan.hurd.cc"
+	></hurd-footer>
 </div>

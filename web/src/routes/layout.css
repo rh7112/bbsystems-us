@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+
+:root {
+	/* Read by the <hurd-footer> web component (shadow DOM, but custom
+	   properties pierce it) so it matches this site's dark slate/cyan
+	   palette instead of its own light-theme defaults. */
+	--color-border: #1e293b; /* slate-800 */
+	--color-text-muted: #94a3b8; /* slate-400 */
+	--color-accent: #22d3ee; /* cyan-400 */
+}
