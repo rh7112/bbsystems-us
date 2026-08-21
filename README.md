@@ -55,7 +55,7 @@ See "Keeping the marketplace piece free" below for what's actually realistic at 
     - **GitHub Pages** — free, dead simple for a static site, ties directly to this repo.
     - **Cloudflare Pages** — free, fast, easy custom domain + SSL, slightly more flexible if we want serverless functions later (e.g. a contact form).
     - Either works fine for a site this size; Cloudflare Pages has a slight edge if a contact form or any dynamic bits come up later.
-17. **Domain** — he already owns bbsystems.us; it's currently just routing to the Google Maps listing. Ryan will handle re-pointing it once hosting is picked (see below).
+17. **Domain** — he owns bbsystems.us, but its DNS is currently broken (points nowhere real) and there's no email routing configured. Ryan is handling this — see "Domain setup" below, including a new question about Cloudflare access that's now the key blocker.
 18. **Contact form** — does he want visitors to be able to submit a form, or is a phone/email link enough?
 
 ### One more, totally optional — the name
@@ -68,11 +68,25 @@ Whatever you're comfortable with — including nothing — works for us.
 
 ## Domain setup (Ryan handling this part)
 
-Cruz owns **bbsystems.us** already — it's just redirecting to the Google Maps listing right now, not doing anything DNS-wise for a real site. Once hosting is decided, here's what's needed to point it at the new site instead. Cruz doesn't need to do the technical work himself — he just needs to either hand over registrar/DNS access, or make a couple of DNS edits Ryan hands him.
+**Update (2026-08-21) — checked the live WHOIS/DNS for bbsystems.us, and it changes the picture:**
+
+- **Registrar is Squarespace Domains II LLC.** This matches Cruz's account of what happened: Google sold Google Domains to Squarespace in 2023, and bbsystems.us came along with that sale. The domain itself is registered fine — status active, registrant is Monte "Cruz" Gregory, expires December 21, 2026. It was not actually lost/resold to someone else.
+- **Nameservers already point to Cloudflare** (`anirban.ns.cloudflare.com` / `oaklyn.ns.cloudflare.com`) — DNS for this domain is currently managed through *some* Cloudflare account, not through Squarespace directly. This is a big deal: if that account is still reachable, the "biggest step" of moving to Cloudflare Pages (the nameserver handoff described below) is likely **already done**.
+- **The current A record is a private IP** (`192.168.68.50`) — not a real public address. The domain doesn't actually resolve to anything reachable on the internet right now. It is *not* redirecting to the Google Maps listing the way we'd assumed — it's just broken/pointing nowhere.
+- **There's no MX record at all** — no mail routing configured. This lines up exactly with Cruz losing access to `support@bbsystems.us` and `admin@bbsystems.us`: whatever handled that mail (most likely free email forwarding or a Workspace account bundled with the old Google Domains setup) never carried over to Squarespace, or access to it broke in that migration.
+
+**New question for Cruz, and it's now the most important one:** do you have access to the Cloudflare account that's currently running DNS for bbsystems.us (the one with nameservers `anirban.ns.cloudflare.com`/`oaklyn.ns.cloudflare.com`)? If yes, that one login unlocks both fixing the site's DNS *and* free email restoration (see below) in one place. If you don't recognize it or can't get back in, that's fine too — we can disconnect it and start DNS fresh, just a bit more setup work.
 
 **What to get from Cruz first:**
-- Who the domain is registered with (GoDaddy, Namecheap, Google Domains/Squarespace, etc.) and whether he still has login access.
-- Either: (a) log in and add Ryan as an authorized user / grant DNS access, or (b) Ryan gives him the exact DNS records to paste in, or (c) Cruz gives Ryan temporary login credentials directly (least preferred — avoid handling his password if possible, have him add the records himself or grant proper access instead).
+- Whether he can log into that existing Cloudflare account (check `mcgregory08@gmail.com`/`bbsystemsus@gmail.com` for old Cloudflare welcome/verification emails if unsure).
+- Separately, his **Squarespace** login (the actual registrar) — needed either way, since that's where nameservers get set if we start over, and it's also the account of record for the domain itself now.
+- Either: (a) he logs in and adds Ryan as an authorized user / grants access, or (b) Ryan gives him exact steps/records to paste in himself, or (c) Cruz gives Ryan temporary login credentials directly (least preferred — avoid handling his password if possible, have him add the records himself or grant proper access instead).
+
+### Restoring support@ and admin@ email (free)
+
+Once there's access to whichever Cloudflare account controls the zone (existing or freshly set up), **Cloudflare Email Routing** is the free fix for the lost email addresses: it forwards `support@bbsystems.us` and `admin@bbsystems.us` straight to an existing inbox (e.g. his working `bbsystemsus@gmail.com`) with no paid mailbox, no Workspace subscription, and no server to run. Cruz keeps replying from his normal Gmail; the forward is invisible to whoever emails him. This also means he can go back to any of the "different sites" that have `admin@bbsystems.us` on file and actually receive their password-reset emails again.
+
+This is a separate, lower-effort task from the hosting decision below — it just needs DNS access, not a finished site. Worth doing as soon as Cloudflare access is sorted, even before hosting is finalized.
 
 ### If hosting on GitHub Pages
 1. In the repo: Settings → Pages → set the custom domain to `bbsystems.us` (and `www.bbsystems.us` if desired). GitHub generates a `CNAME` file in the repo automatically.
