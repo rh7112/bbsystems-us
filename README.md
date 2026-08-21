@@ -53,9 +53,9 @@ See "Keeping the marketplace piece free" below for what's actually realistic at 
 
 ### Technical — ⬜ still open
 15. ~~**Framework**~~ — decided: the site is being built in **Svelte**.
-16. ~~**Hosting**~~ — decided: **Cloudflare Pages**, under Cruz's own Cloudflare account (the one bbsystems.us's domain now lives in). Live at a temporary `.pages.dev` URL — see Status above.
-17. **Domain** — resolved: the nameservers were already Cruz's own Cloudflare account (confirmed 2026-08-21, after Cruz upgraded Ryan's permissions there). Still open: attaching `bbsystems.us` as the Pages project's custom domain, and finishing the GitHub Actions secrets — both dashboard/one-time steps, see "Domain setup" below.
-18. **Contact form** — does he want visitors to be able to submit a form, or is a phone/email link enough?
+16. ~~**Hosting**~~ — decided: **Cloudflare Workers** (with static assets), under Cruz's own Cloudflare account. **Live at https://bbsystems.us.**
+17. ~~**Domain**~~ — resolved: nameservers were already Cruz's own Cloudflare account; `bbsystems.us` and `www.bbsystems.us` are both attached and live.
+18. ~~**Contact form**~~ — built: a real form (first name, last name, email, subject, message) at the bottom of the site, backed by a Worker route (`web/worker/index.ts`) that emails submissions via Cloudflare's `send_email` binding. **Blocked on the same thing as support@/admin@ below** — sending fails right now with `could not find account config of sending domain` until Email Routing is enabled on the `bbsystems.us` zone. One dashboard step fixes both the contact form *and* the lost email addresses at once.
 
 ### One more, totally optional — the name
 You told us you'd rather keep the site business-only, no personal bio, no life story — and that's exactly how it's being built. This is a separate, smaller thing: right now nothing on the site explains what "BB" stands for, and it's purely a branding question, not a personal one. Totally your call, no wrong answer:

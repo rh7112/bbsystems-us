@@ -39,6 +39,43 @@
 		{ src: '/images/gallery/build-green-rgb.jpg', alt: 'Custom build with green RGB fan lighting' },
 		{ src: '/images/gallery/build-red-rgb.jpg', alt: 'Custom build with red and rainbow RGB lighting' }
 	];
+
+	let firstName = $state('');
+	let lastName = $state('');
+	let contactEmail = $state('');
+	let subject = $state('');
+	let message = $state('');
+	let status: 'idle' | 'sending' | 'sent' | 'error' = $state('idle');
+	let errorMessage = $state('');
+
+	async function submitContactForm(event: SubmitEvent) {
+		event.preventDefault();
+		status = 'sending';
+		errorMessage = '';
+
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ firstName, lastName, email: contactEmail, subject, message })
+			});
+
+			if (!response.ok) {
+				const body = (await response.json().catch(() => null)) as { error?: string } | null;
+				throw new Error(body?.error ?? 'Something went wrong. Please try again.');
+			}
+
+			status = 'sent';
+			firstName = '';
+			lastName = '';
+			contactEmail = '';
+			subject = '';
+			message = '';
+		} catch (err) {
+			status = 'error';
+			errorMessage = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+		}
+	}
 </script>
 
 <!-- Hero -->
@@ -142,5 +179,87 @@
 				Read Reviews on Google →
 			</a>
 		</div>
+	</div>
+</section>
+
+<!-- Contact form -->
+<section id="contact" class="border-t border-slate-800 bg-slate-900/30">
+	<div class="mx-auto max-w-2xl px-4 py-20 sm:px-6">
+		<h2 class="text-3xl font-bold text-white">Get In Touch</h2>
+		<p class="mt-3 text-slate-400">
+			Send a message and we'll get back to you — or call/text {phoneDisplay} if it's urgent.
+		</p>
+
+		<form onsubmit={submitContactForm} class="mt-10 space-y-6">
+			<div class="grid gap-6 sm:grid-cols-2">
+				<div>
+					<label for="firstName" class="mb-2 block text-sm font-medium text-slate-300">First name</label>
+					<input
+						id="firstName"
+						type="text"
+						required
+						bind:value={firstName}
+						class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
+					/>
+				</div>
+				<div>
+					<label for="lastName" class="mb-2 block text-sm font-medium text-slate-300">Last name</label>
+					<input
+						id="lastName"
+						type="text"
+						required
+						bind:value={lastName}
+						class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
+					/>
+				</div>
+			</div>
+
+			<div>
+				<label for="email" class="mb-2 block text-sm font-medium text-slate-300">Email</label>
+				<input
+					id="email"
+					type="email"
+					required
+					bind:value={contactEmail}
+					class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
+				/>
+			</div>
+
+			<div>
+				<label for="subject" class="mb-2 block text-sm font-medium text-slate-300">Subject</label>
+				<input
+					id="subject"
+					type="text"
+					required
+					bind:value={subject}
+					class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
+				/>
+			</div>
+
+			<div>
+				<label for="message" class="mb-2 block text-sm font-medium text-slate-300">Message</label>
+				<textarea
+					id="message"
+					required
+					rows="5"
+					bind:value={message}
+					class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
+				></textarea>
+			</div>
+
+			<button
+				type="submit"
+				disabled={status === 'sending'}
+				class="rounded-full bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-60"
+			>
+				{status === 'sending' ? 'Sending…' : 'Send Message'}
+			</button>
+
+			{#if status === 'sent'}
+				<p class="text-sm text-emerald-400">Thanks — your message is on its way. We'll be in touch.</p>
+			{:else if status === 'error'}
+				<p class="text-sm text-red-400">{errorMessage}</p>
+			{/if}
+		</form>
 	</div>
 </section>

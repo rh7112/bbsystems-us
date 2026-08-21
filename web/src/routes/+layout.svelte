@@ -6,6 +6,7 @@
 
 	const phoneDisplay = '(260) 248-1269';
 	const phoneHref = '+12602481269';
+	const emailAddress = 'support@bbsystems.us';
 	let navOpen = $state(false);
 </script>
 
@@ -34,12 +35,20 @@
 				<a href="#contact" class="transition hover:text-cyan-400">Contact</a>
 			</nav>
 
-			<a
-				href="tel:{phoneHref}"
-				class="hidden rounded-full bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 md:inline-block"
-			>
-				Call/Text {phoneDisplay}
-			</a>
+			<div class="hidden items-center gap-3 md:flex">
+				<a
+					href="mailto:{emailAddress}"
+					class="rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-400 hover:text-cyan-400"
+				>
+					Email Us
+				</a>
+				<a
+					href="tel:{phoneHref}"
+					class="rounded-full bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
+				>
+					Call/Text {phoneDisplay}
+				</a>
+			</div>
 
 			<button
 				class="text-slate-200 md:hidden"
@@ -66,6 +75,12 @@
 				<a href="tel:{phoneHref}" class="mt-2 rounded-full bg-cyan-500 px-4 py-2 text-center font-semibold text-slate-950">
 					Call/Text {phoneDisplay}
 				</a>
+				<a
+					href="mailto:{emailAddress}"
+					class="rounded-full border border-slate-700 px-4 py-2 text-center font-semibold text-slate-100"
+				>
+					Email Us
+				</a>
 			</nav>
 		{/if}
 	</header>
@@ -74,7 +89,7 @@
 		{@render children()}
 	</main>
 
-	<footer id="contact" class="border-t border-slate-800 bg-slate-950">
+	<footer class="border-t border-slate-800 bg-slate-950">
 		<div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
 			<div>
 				<div class="flex items-center gap-3">
@@ -95,6 +110,9 @@
 					</li>
 					<li>
 						<a href="sms:{phoneHref}" class="transition hover:text-cyan-400">Text: {phoneDisplay}</a>
+					</li>
+					<li>
+						<a href="mailto:{emailAddress}" class="transition hover:text-cyan-400">Email: {emailAddress}</a>
 					</li>
 					<li>820 W Tower St, Pierceton, IN 46562</li>
 				</ul>
