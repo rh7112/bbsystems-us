@@ -1,0 +1,12 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "bbsystems-us",
+	"compatibility_date": "2026-08-21",
+	"assets": {
+		"directory": "./build"
+	},
+	"routes": [
+		{ "pattern": "bbsystems.us", "custom_domain": true },
+		{ "pattern": "www.bbsystems.us", "custom_domain": true }
+	]
+}

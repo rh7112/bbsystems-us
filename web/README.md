@@ -1,6 +1,15 @@
 # BBSystems.US — site
 
-SvelteKit app for the BBSystems.US website. Uses `@sveltejs/adapter-static`, so it builds to plain HTML/CSS/JS and can deploy to either GitHub Pages or Cloudflare Pages (see the [root README](../README.md) for the hosting/domain decision).
+SvelteKit app for the BBSystems.US website. Uses `@sveltejs/adapter-static`, so it builds to plain HTML/CSS/JS, deployed as a Cloudflare Worker with static assets (`wrangler.jsonc` in this directory — see the [root README](../README.md) for how that decision was made).
+
+## Deploying
+
+```sh
+npm run build
+npx wrangler deploy
+```
+
+Requires being authenticated to Cruz's Cloudflare account (`npx wrangler login`). In normal use this happens automatically via [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) on every push to `master`.
 
 ## Developing
 
