@@ -28,6 +28,14 @@
 				'Uploading, automating, and analysis',
 				'Mass modifying, deleting, and more'
 			]
+		},
+		{
+			name: 'Website Design & Hosting',
+			items: [
+				'Website builds start at $500–$1,000+, depending on how static vs. dynamic the site needs to be — single-page sites fall at the lower end, larger business sites can run well beyond that',
+				'We design, build, and host it for you',
+				'Management & maintenance starts at $20+/mo, depending on the breadth of the project'
+			]
 		}
 	];
 
@@ -116,7 +124,7 @@
 		Pricing is worked out with you directly based on what you need — call or text to get a quote.
 	</p>
 
-	<div class="mt-12 grid gap-8 md:grid-cols-3">
+	<div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
 		{#each services as service (service.name)}
 			<div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
 				<h3 class="text-xl font-semibold text-cyan-400">{service.name}</h3>
@@ -152,35 +160,6 @@
 			{/each}
 		</div>
 	</div>
-</section>
-
-<!-- Web Hosting -->
-<section id="hosting" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-	<h2 class="text-3xl font-bold text-white">Website Design &amp; Hosting</h2>
-	<p class="mt-3 max-w-2xl text-slate-400">
-		Need a website? We'll design, build, and host it for you. The build itself is quoted based on what you need —
-		call or text to talk through your project. Hosting keeps your site online, maintained, and monitored for a flat
-		monthly rate.
-	</p>
-
-	<div class="mt-12 grid gap-8 md:grid-cols-2">
-		<div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8">
-			<h3 class="text-xl font-semibold text-cyan-400">Personal</h3>
-			<p class="mt-2 text-3xl font-bold text-white">$30<span class="text-base font-normal text-slate-400">/mo</span></p>
-			<p class="mt-4 text-sm text-slate-300">Hosting and maintenance for personal sites, portfolios, and blogs.</p>
-		</div>
-
-		<div class="rounded-2xl border border-cyan-500/50 bg-slate-900/50 p-8">
-			<h3 class="text-xl font-semibold text-cyan-400">Business</h3>
-			<p class="mt-2 text-3xl font-bold text-white">$50<span class="text-base font-normal text-slate-400">/mo</span></p>
-			<p class="mt-4 text-sm text-slate-300">Hosting and maintenance for business and storefront sites.</p>
-		</div>
-	</div>
-
-	<p class="mt-8 text-sm text-slate-400">
-		<a href="#contact" class="font-semibold text-cyan-400 hover:underline">Get in touch</a> to talk about your project
-		and get a build quote.
-	</p>
 </section>
 
 <!-- Service area + reviews -->
