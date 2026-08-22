@@ -98,8 +98,8 @@ A new service line, live on the site as the "Web Hosting" section (`#hosting`): 
 
 **Business model — internal notes, not published on the site:**
 - Cruz gets a **finder's fee** for referring hosting/website clients — amount not yet decided between Ryan and Cruz, so nothing about this appears on the public site. Sort out the actual number separately.
-- Public pricing is a flat, bundled monthly rate covering hosting + maintenance together (no separate line items): **$30/mo personal, $50/mo business**.
-- The one-time website build/design cost is **not fixed** — quoted per project based on scope, same "contact for quote" pattern as the rest of the site. Matches how PC builds/IT work already get priced here.
+- Public pricing (updated 2026-08-21): website builds start at **$500&ndash;$1,000+**, depending on how static vs. dynamic the site is. Management/maintenance is **$20+/mo**, depending on the breadth of the project. Both are stated as starting points on the site, not flat rates — still push people to contact for an exact quote.
+- Ryan's guidance on where actual quotes land within/beyond that range: a simple single-page site should fall at the lower end (~$500); a B2B site can run into the several-thousand-dollar range depending on how complex/hard it is to build. The public copy hints at this range without publishing exact tiers.
 
 **Still needed — a support inbox for hosting clients:**
 Plan is a free-tier helpdesk (Freshdesk or Zoho Desk free plan) so hosting client requests come in as tickets instead of loose emails. I can't sign up for a third-party SaaS account on anyone's behalf — either Cruz or Ryan needs to create the free account directly. Once it exists, send me the helpdesk's inbound support-ticket email address (e.g. `something@yourcompany.freshdesk.com`) and I'll wire up Cloudflare Email Routing so a dedicated address (e.g. `hosting@bbsystems.us`) forwards straight into it — same mechanism as the `support@`/`admin@` email restoration above, just a different destination.
