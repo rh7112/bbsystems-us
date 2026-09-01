@@ -25,5 +25,10 @@
 	},
 	"dependencies": {
 		"mimetext": "^3.0.28"
+	},
+	"overrides": {
+		"@sveltejs/kit": {
+			"cookie": "^0.7.2"
+		}
 	}
 }
