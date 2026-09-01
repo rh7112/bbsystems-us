@@ -17,6 +17,47 @@
 		name="description"
 		content="IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide."
 	/>
+	<link rel="canonical" href="https://bbsystems.us/" />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="BBSystems.US — IT Consulting, PC Repair & Custom Computer Builds" />
+	<meta
+		property="og:description"
+		content="IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide."
+	/>
+	<meta property="og:url" content="https://bbsystems.us/" />
+	<meta property="og:site_name" content="BBSystems.US" />
+	<meta property="og:image" content="https://bbsystems.us/images/logo.png" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="BBSystems.US — IT Consulting, PC Repair & Custom Computer Builds" />
+	<meta
+		name="twitter:description"
+		content="IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide."
+	/>
+	<meta name="twitter:image" content="https://bbsystems.us/images/logo.png" />
+
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "LocalBusiness",
+		"name": "BBSystems.US",
+		"image": "https://bbsystems.us/images/logo.png",
+		"url": "https://bbsystems.us/",
+		"telephone": "+12602481269",
+		"email": "support@bbsystems.us",
+		"address": {
+			"@type": "PostalAddress",
+			"streetAddress": "820 W Tower St",
+			"addressLocality": "Pierceton",
+			"addressRegion": "IN",
+			"postalCode": "46562",
+			"addressCountry": "US"
+		},
+		"areaServed": "On-site within 90 miles of Pierceton, IN; remote IT support nationwide",
+		"sameAs": ["https://www.google.com/maps/search/?api=1&query=BBSystems.US+820+W+Tower+St+Pierceton+IN+46562"]
+	}
+	</script>
+
 	<script type="module" src="https://cdn.jsdelivr.net/gh/rh7112/hurd-footer@main/hurd-footer.js"></script>
 </svelte:head>
 
