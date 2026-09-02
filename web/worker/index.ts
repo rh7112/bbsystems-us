@@ -12,6 +12,20 @@ interface ContactPayload {
 	email?: string;
 	subject?: string;
 	message?: string;
+	pcPartPickerUrl?: string;
+}
+
+// PCPartPicker list-share links are just public URLs -- this only checks
+// the hostname, not that the list itself resolves, matching the "plain
+// text field + validation that it looks like a pcpartpicker.com link,
+// nothing more exotic" scope from the issue this came from.
+function isPcPartPickerUrl(value: string): boolean {
+	try {
+		const host = new URL(value).hostname.toLowerCase();
+		return host === 'pcpartpicker.com' || host.endsWith('.pcpartpicker.com');
+	} catch {
+		return false;
+	}
 }
 
 // Contact form mail goes straight to Cruz's working inbox rather than
@@ -50,12 +64,16 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
 	const email = body.email?.trim();
 	const subject = body.subject?.trim();
 	const message = body.message?.trim();
+	const pcPartPickerUrl = body.pcPartPickerUrl?.trim();
 
 	if (!firstName || !lastName || !email || !subject || !message) {
 		return json({ error: 'All fields are required' }, 400);
 	}
 	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 		return json({ error: 'Invalid email address' }, 400);
+	}
+	if (pcPartPickerUrl && !isPcPartPickerUrl(pcPartPickerUrl)) {
+		return json({ error: "That doesn't look like a PCPartPicker link" }, 400);
 	}
 
 	const msg = createMimeMessage();
@@ -65,7 +83,9 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
 	msg.setHeader('Reply-To', new Mailbox(email));
 	msg.addMessage({
 		contentType: 'text/plain',
-		data: `From: ${firstName} ${lastName} <${email}>\n\n${message}`
+		data: `From: ${firstName} ${lastName} <${email}>\n\n${message}${
+			pcPartPickerUrl ? `\n\nPCPartPicker list: ${pcPartPickerUrl}` : ''
+		}`
 	});
 
 	const emailMessage = new EmailMessage(CONTACT_FROM, CONTACT_TO, msg.asRaw());

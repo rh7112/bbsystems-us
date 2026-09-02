@@ -3,6 +3,8 @@
 	const phoneHref = '+12602481269';
 	const reviewsUrl =
 		'https://www.google.com/maps/search/?api=1&query=BBSystems.US+820+W+Tower+St+Pierceton+IN+46562';
+	const description =
+		'IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide.';
 
 	const services = [
 		{
@@ -48,43 +50,24 @@
 		{ src: '/images/gallery/build-red-rgb.jpg', alt: 'Custom build with red and rainbow RGB lighting' }
 	];
 
-	let firstName = $state('');
-	let lastName = $state('');
-	let contactEmail = $state('');
-	let subject = $state('');
-	let message = $state('');
-	let status: 'idle' | 'sending' | 'sent' | 'error' = $state('idle');
-	let errorMessage = $state('');
-
-	async function submitContactForm(event: SubmitEvent) {
-		event.preventDefault();
-		status = 'sending';
-		errorMessage = '';
-
-		try {
-			const response = await fetch('/api/contact', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ firstName, lastName, email: contactEmail, subject, message })
-			});
-
-			if (!response.ok) {
-				const body = (await response.json().catch(() => null)) as { error?: string } | null;
-				throw new Error(body?.error ?? 'Something went wrong. Please try again.');
-			}
-
-			status = 'sent';
-			firstName = '';
-			lastName = '';
-			contactEmail = '';
-			subject = '';
-			message = '';
-		} catch (err) {
-			status = 'error';
-			errorMessage = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
-		}
-	}
 </script>
+
+<svelte:head>
+	<title>BBSystems.US — IT Consulting, PC Repair & Custom Computer Builds</title>
+	<meta name="description" content={description} />
+	<link rel="canonical" href="https://bbsystems.us/" />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="BBSystems.US — IT Consulting, PC Repair & Custom Computer Builds" />
+	<meta property="og:description" content={description} />
+	<meta property="og:url" content="https://bbsystems.us/" />
+	<meta property="og:site_name" content="BBSystems.US" />
+	<meta property="og:image" content="https://bbsystems.us/images/logo.png" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="BBSystems.US — IT Consulting, PC Repair & Custom Computer Builds" />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://bbsystems.us/images/logo.png" />
+</svelte:head>
 
 <!-- Hero -->
 <section class="relative overflow-hidden border-b border-slate-800">
@@ -190,84 +173,28 @@
 	</div>
 </section>
 
-<!-- Contact form -->
+<!-- Contact CTA -- the actual form now lives at /contact (also where the
+     PCPartPicker list flow lives), so this is just a pointer there rather
+     than a second copy of the same form. -->
 <section id="contact" class="border-t border-slate-800 bg-slate-900/30">
-	<div class="mx-auto max-w-2xl px-4 py-20 sm:px-6">
+	<div class="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
 		<h2 class="text-3xl font-bold text-white">Get In Touch</h2>
 		<p class="mt-3 text-slate-400">
 			Send a message and we'll get back to you — or call/text {phoneDisplay} if it's urgent.
 		</p>
-
-		<form onsubmit={submitContactForm} class="mt-10 space-y-6">
-			<div class="grid gap-6 sm:grid-cols-2">
-				<div>
-					<label for="firstName" class="mb-2 block text-sm font-medium text-slate-300">First name</label>
-					<input
-						id="firstName"
-						type="text"
-						required
-						bind:value={firstName}
-						class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
-					/>
-				</div>
-				<div>
-					<label for="lastName" class="mb-2 block text-sm font-medium text-slate-300">Last name</label>
-					<input
-						id="lastName"
-						type="text"
-						required
-						bind:value={lastName}
-						class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
-					/>
-				</div>
-			</div>
-
-			<div>
-				<label for="email" class="mb-2 block text-sm font-medium text-slate-300">Email</label>
-				<input
-					id="email"
-					type="email"
-					required
-					bind:value={contactEmail}
-					class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
-				/>
-			</div>
-
-			<div>
-				<label for="subject" class="mb-2 block text-sm font-medium text-slate-300">Subject</label>
-				<input
-					id="subject"
-					type="text"
-					required
-					bind:value={subject}
-					class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
-				/>
-			</div>
-
-			<div>
-				<label for="message" class="mb-2 block text-sm font-medium text-slate-300">Message</label>
-				<textarea
-					id="message"
-					required
-					rows="5"
-					bind:value={message}
-					class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
-				></textarea>
-			</div>
-
-			<button
-				type="submit"
-				disabled={status === 'sending'}
-				class="rounded-full bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-60"
+		<div class="mt-8 flex flex-wrap justify-center gap-4">
+			<a
+				href="/contact"
+				class="rounded-full bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
 			>
-				{status === 'sending' ? 'Sending…' : 'Send Message'}
-			</button>
-
-			{#if status === 'sent'}
-				<p class="text-sm text-emerald-400">Thanks — your message is on its way. We'll be in touch.</p>
-			{:else if status === 'error'}
-				<p class="text-sm text-red-400">{errorMessage}</p>
-			{/if}
-		</form>
+				Contact Us
+			</a>
+			<a
+				href="tel:{phoneHref}"
+				class="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-400 hover:text-cyan-400"
+			>
+				Call {phoneDisplay}
+			</a>
+		</div>
 	</div>
 </section>
