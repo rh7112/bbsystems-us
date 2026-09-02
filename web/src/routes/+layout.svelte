@@ -84,10 +84,10 @@
 					Email Us
 				</a>
 				<a
-					href="tel:{phoneHref}"
+					href="#contact"
 					class="rounded-full bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
 				>
-					Call/Text {phoneDisplay}
+					Request an Appointment
 				</a>
 			</div>
 
@@ -113,8 +113,12 @@
 				<a href="#builds" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Builds</a>
 				<a href="#service-area" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Service Area</a>
 				<a href="#contact" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Contact</a>
-				<a href="tel:{phoneHref}" class="mt-2 rounded-full bg-cyan-500 px-4 py-2 text-center font-semibold text-slate-950">
-					Call/Text {phoneDisplay}
+				<a
+					href="#contact"
+					class="mt-2 rounded-full bg-cyan-500 px-4 py-2 text-center font-semibold text-slate-950"
+					onclick={() => (navOpen = false)}
+				>
+					Request an Appointment
 				</a>
 				<a
 					href="mailto:{emailAddress}"
@@ -138,8 +142,8 @@
 					<span class="text-lg font-bold text-white">BBSystems.US</span>
 				</div>
 				<p class="mt-3 text-sm text-slate-400">
-					IT consulting, PC repair, and custom Bully Built computers. Call or text anytime with a question or to
-					schedule an appointment.
+					IT consulting, PC repair, and custom Bully Built computers. Request an appointment to get started, or
+					reach out with any questions.
 				</p>
 			</div>
 
