@@ -43,18 +43,29 @@ Every content/technical question from the original questionnaire is answered and
 
 **Note on how we got here:** an earlier attempt used Cloudflare Pages instead of a Worker. Along the way, someone also connected this repo to a separate Cloudflare *Worker* via the dashboard's "Connect to Git" (Workers Builds) — that one kept auto-recreating itself with a broken default build command every push, since `wrangler delete` only removes the deployed script, not the underlying Git-integration trigger. It's been fully replaced by the Worker+`wrangler.jsonc` setup above, which is now the only deploy path — nothing dashboard-Git-connected should exist anymore.
 
-### Restoring support@ and admin@ email (free) -- decided: Zoho Mail
+### Restoring support@ and admin@ email -- decided: Zoho Mail (free or paid, TBD)
 
-**Decided (2026-09-02):** real, separate mailboxes at `support@bbsystems.us` and `admin@bbsystems.us` via **Zoho Mail's free plan** (up to 5 addresses, 5GB each, one domain, genuinely $0) -- not Cloudflare Email Routing. Routing only *forwards* mail into an existing inbox (e.g. `bbsystemsus@gmail.com`); it can't host a real mailbox on its own, and the ask here is for `support@`/`admin@` to be actual inboxes Cruz logs into, not just a forward.
+**Decided (2026-09-02):** real, separate mailboxes at `support@bbsystems.us` and `admin@bbsystems.us` via **Zoho Mail** -- not Cloudflare Email Routing. Routing only *forwards* mail into an existing inbox (e.g. `bbsystemsus@gmail.com`); it can't host a real mailbox on its own, and the ask here is for `support@`/`admin@` to be actual inboxes Cruz logs into, not just a forward. Cruz may go with a paid Zoho Mail plan instead of the free one -- see the comparison below. Which one doesn't change any of the setup steps, just which button gets clicked during signup.
 
 Split by purpose, per Cruz:
 - **`support@bbsystems.us`** -- customer-facing, "basically 95% of things." The contact form should send here once it's live (currently sends to `bbsystemsus@gmail.com` -- see `web/worker/index.ts`'s `CONTACT_TO`, needs updating as a follow-up once the mailbox is verified and receiving mail).
 - **`admin@bbsystems.us`** -- internal/business stuff that isn't customer-facing (domain renewals, vendor correspondence, etc.). Not referenced anywhere on the public site.
 
-**Trade-off worth knowing going in:** the free plan has no forwarding and no IMAP/POP, so Cruz checks these in Zoho's own webmail (mail.zoho.com) or their mobile app -- not folded into his existing Gmail inbox/app the way a forward would be. Chose this anyway since the ask was for real separate mailboxes, not a forward-and-reply-as trick.
+**Free vs. paid (2026-09-02 pricing, worth reconfirming on Zoho's site before signing up):**
+
+| | Free (Forever Free) | Mail Lite (paid) |
+|---|---|---|
+| Cost | $0 | ~$1/user/month |
+| Addresses / storage | Up to 5 addresses, 5GB each, 1 domain | Same address/domain limits, 5-10GB each depending on tier |
+| **IMAP/POP/ActiveSync** | ❌ -- webmail (mail.zoho.com) or Zoho's mobile app only | ✅ -- can use Outlook, Apple Mail, Thunderbird, or fold into an existing phone Mail app |
+| Forwarding | ❌ | ✅ |
+
+The free plan's real cost isn't money, it's workflow: Cruz checks `support@`/`admin@` in Zoho's own app/webmail, separate from however he checks `bbsystemsus@gmail.com` today. Mail Lite removes that friction for ~$1/mailbox/month. Worth deciding based on whether that separate-app friction actually bothers him day to day, not just "free vs. not free."
+
+**Does a paid plan help with the email-to-ticket idea (see "Web Hosting service" below)? Short answer: not directly.** Ticketing is a *separate* Zoho product, **Zoho Desk** (which has its own free tier already), not a feature of Zoho Mail at any tier -- paid Zoho Mail buys IMAP/forwarding, not tickets. Zoho does offer a Mail<->Desk integration that auto-converts incoming support email into Desk tickets, but that's Zoho Desk's feature working *with* Zoho Mail, not something a Zoho Mail upgrade unlocks by itself. I couldn't confirm from Zoho's docs whether that integration itself requires paid tiers on either product -- worth a direct check on Zoho's site (or asking their support) once Cruz is actually ready to wire that up, rather than assuming either way.
 
 **Setup steps (Cruz's Zoho account + Cruz's Cloudflare account -- I can't do either, no account access to either):**
-1. Sign up at [zoho.com/mail](https://www.zoho.com/mail/) -- pick the **Forever Free** plan (no credit card). Add `bbsystems.us` as the domain.
+1. Sign up at [zoho.com/mail](https://www.zoho.com/mail/) -- pick **Forever Free** or **Mail Lite** (Mail Lite asks for payment info; Forever Free doesn't). Add `bbsystems.us` as the domain. Free can be upgraded to Mail Lite later without redoing the steps below, if he wants to try free first.
 2. Zoho gives a DNS **TXT record** to prove domain ownership -- add it in Cloudflare (`bbsystems.us` zone -> DNS -> Records).
 3. Zoho gives **MX records** to point mail at their servers -- add those too (this is the step that actually makes `@bbsystems.us` mail arrive at Zoho instead of nowhere).
 4. Also add the **SPF and DKIM** records Zoho provides -- skipping these makes outbound mail from these addresses likely to land in spam.
