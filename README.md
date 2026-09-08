@@ -43,23 +43,21 @@ Every content/technical question from the original questionnaire is answered and
 
 **Note on how we got here:** an earlier attempt used Cloudflare Pages instead of a Worker. Along the way, someone also connected this repo to a separate Cloudflare *Worker* via the dashboard's "Connect to Git" (Workers Builds) — that one kept auto-recreating itself with a broken default build command every push, since `wrangler delete` only removes the deployed script, not the underlying Git-integration trigger. It's been fully replaced by the Worker+`wrangler.jsonc` setup above, which is now the only deploy path — nothing dashboard-Git-connected should exist anymore.
 
-### Restoring support@ and admin@ email (free) -- decided: Zoho Mail
+### Restoring support@ and admin@ email (free) -- decided: Cloudflare Email Routing + Gmail
 
-**Decided (2026-09-02):** real, separate mailboxes at `support@bbsystems.us` and `admin@bbsystems.us` via **Zoho Mail's free plan** (up to 5 addresses, 5GB each, one domain, genuinely $0) -- not Cloudflare Email Routing. Routing only *forwards* mail into an existing inbox (e.g. `bbsystemsus@gmail.com`); it can't host a real mailbox on its own, and the ask here is for `support@`/`admin@` to be actual inboxes Cruz logs into, not just a forward.
+**Decided (2026-09-02), final:** Cruz went with **Cloudflare Email Routing** forwarding `support@bbsystems.us` and `admin@bbsystems.us` straight into his existing `bbsystemsus@gmail.com` inbox, plus Gmail's **"Send mail as"** feature so replies can go back out looking like they're from the correct `@bbsystems.us` address instead of the personal Gmail one showing through. (Zoho Mail was considered and set up in docs first -- see closed PR #18/earlier commits on this section -- but Cruz decided against it in favor of staying in the Gmail inbox/app he already uses daily, no separate webmail to check.)
 
-Split by purpose, per Cruz:
-- **`support@bbsystems.us`** -- customer-facing, "basically 95% of things." The contact form should send here once it's live (currently sends to `bbsystemsus@gmail.com` -- see `web/worker/index.ts`'s `CONTACT_TO`, needs updating as a follow-up once the mailbox is verified and receiving mail).
-- **`admin@bbsystems.us`** -- internal/business stuff that isn't customer-facing (domain renewals, vendor correspondence, etc.). Not referenced anywhere on the public site.
+Split by purpose, unchanged from the original plan:
+- **`support@bbsystems.us`** -- customer-facing, "basically 95% of things."
+- **`admin@bbsystems.us`** -- internal/business stuff that isn't customer-facing. Not referenced anywhere on the public site.
 
-**Trade-off worth knowing going in:** the free plan has no forwarding and no IMAP/POP, so Cruz checks these in Zoho's own webmail (mail.zoho.com) or their mobile app -- not folded into his existing Gmail inbox/app the way a forward would be. Chose this anyway since the ask was for real separate mailboxes, not a forward-and-reply-as trick.
+**No code changes needed here** -- the contact form already sends to `bbsystemsus@gmail.com` (`web/worker/index.ts`'s `CONTACT_TO`), which is exactly where `support@` now forwards to, so it's already landing in the right place.
 
-**Setup steps (Cruz's Zoho account + Cruz's Cloudflare account -- I can't do either, no account access to either):**
-1. Sign up at [zoho.com/mail](https://www.zoho.com/mail/) -- pick the **Forever Free** plan (no credit card). Add `bbsystems.us` as the domain.
-2. Zoho gives a DNS **TXT record** to prove domain ownership -- add it in Cloudflare (`bbsystems.us` zone -> DNS -> Records).
-3. Zoho gives **MX records** to point mail at their servers -- add those too (this is the step that actually makes `@bbsystems.us` mail arrive at Zoho instead of nowhere).
-4. Also add the **SPF and DKIM** records Zoho provides -- skipping these makes outbound mail from these addresses likely to land in spam.
-5. Once DNS verifies (can take a few hours), create the two mailboxes: `support@bbsystems.us` and `admin@bbsystems.us`.
-6. Tell Ryan once `support@` is live and receiving mail -- the contact form's `CONTACT_TO` gets updated to send there instead of the personal Gmail address.
+**Setup steps (Cruz's Cloudflare account + Cruz's Gmail -- I can't do either, no account access to either):**
+1. Cloudflare dashboard -> the `bbsystems.us` zone -> **Email -> Email Routing** -> enable.
+2. Add two destination/routing rules: `support@bbsystems.us` -> `bbsystemsus@gmail.com`, and `admin@bbsystems.us` -> `bbsystemsus@gmail.com`. First time a new destination address is used, Cloudflare emails it a confirmation link -- has to be clicked before forwarding actually starts working.
+3. In Gmail: **Settings -> See all settings -> Accounts and Import -> "Send mail as"** -> add `support@bbsystems.us` (and `admin@bbsystems.us` if he wants to reply as that one too) -> verify. This is what makes replies show the right `@bbsystems.us` address in the recipient's inbox instead of the personal Gmail address.
+4. That's it -- no DNS records to hand-add beyond what enabling Email Routing sets up automatically, no second mailbox/app to check.
 
 ## Web Hosting service (new, 2026-08-21)
 
