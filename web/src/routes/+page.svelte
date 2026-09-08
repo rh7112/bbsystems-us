@@ -80,21 +80,21 @@
 			IT Consulting, PC Repair &amp; Custom Computers
 		</h1>
 		<p class="mt-6 max-w-2xl text-lg text-slate-300">
-			Hardware repair, custom Bully Built PCs, remote and local IT support, and data solutions — call or text
-			anytime with a question or to make an appointment.
+			Hardware repair, custom Bully Built PCs, remote and local IT support, and data solutions — request an
+			appointment to get things diagnosed, or reach out with a question.
 		</p>
 		<div class="mt-8 flex flex-wrap gap-4">
 			<a
-				href="tel:{phoneHref}"
+				href="/#contact"
 				class="rounded-full bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
 			>
-				Call {phoneDisplay}
+				Request an Appointment
 			</a>
 			<a
-				href="sms:{phoneHref}"
+				href="tel:{phoneHref}"
 				class="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-400 hover:text-cyan-400"
 			>
-				Text Us
+				Call/Text {phoneDisplay}
 			</a>
 		</div>
 	</div>
@@ -104,7 +104,7 @@
 <section id="services" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
 	<h2 class="text-3xl font-bold text-white">What We Do</h2>
 	<p class="mt-3 max-w-2xl text-slate-400">
-		Pricing is worked out with you directly based on what you need — call or text to get a quote.
+		Pricing is worked out with you directly based on what you need — request an appointment to get a quote.
 	</p>
 
 	<div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -180,7 +180,8 @@
 	<div class="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
 		<h2 class="text-3xl font-bold text-white">Get In Touch</h2>
 		<p class="mt-3 text-slate-400">
-			Send a message and we'll get back to you — or call/text {phoneDisplay} if it's urgent.
+			Send a message to get a diagnostic scheduled or ask a question — we'll get back to you. Call/text
+			{phoneDisplay} if it's urgent.
 		</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a
