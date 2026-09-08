@@ -12,30 +12,14 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>BBSystems.US — IT Consulting, PC Repair & Custom Computer Builds</title>
-	<meta
-		name="description"
-		content="IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide."
-	/>
-	<link rel="canonical" href="https://bbsystems.us/" />
 
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="BBSystems.US — IT Consulting, PC Repair & Custom Computer Builds" />
-	<meta
-		property="og:description"
-		content="IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide."
-	/>
-	<meta property="og:url" content="https://bbsystems.us/" />
-	<meta property="og:site_name" content="BBSystems.US" />
-	<meta property="og:image" content="https://bbsystems.us/images/logo.png" />
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="BBSystems.US — IT Consulting, PC Repair & Custom Computer Builds" />
-	<meta
-		name="twitter:description"
-		content="IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide."
-	/>
-	<meta name="twitter:image" content="https://bbsystems.us/images/logo.png" />
-
+	<!--
+		Only site-wide, page-independent tags live here (favicon, the
+		business's JSON-LD, the shared footer script). title/description/
+		canonical/OG are per-page now (see +page.svelte) -- now that there's
+		more than one route (/, /contact), a single hardcoded canonical/OG
+		set here would just be wrong on every page but the homepage.
+	-->
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -70,10 +54,10 @@
 			</a>
 
 			<nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
-				<a href="#services" class="transition hover:text-cyan-400">Services</a>
-				<a href="#builds" class="transition hover:text-cyan-400">Builds</a>
-				<a href="#service-area" class="transition hover:text-cyan-400">Service Area</a>
-				<a href="#contact" class="transition hover:text-cyan-400">Contact</a>
+				<a href="/#services" class="transition hover:text-cyan-400">Services</a>
+				<a href="/#builds" class="transition hover:text-cyan-400">Builds</a>
+				<a href="/#service-area" class="transition hover:text-cyan-400">Service Area</a>
+				<a href="/contact" class="transition hover:text-cyan-400">Contact</a>
 			</nav>
 
 			<div class="hidden items-center gap-3 md:flex">
@@ -84,7 +68,7 @@
 					Email Us
 				</a>
 				<a
-					href="#contact"
+					href="/#contact"
 					class="rounded-full bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
 				>
 					Request an Appointment
@@ -109,16 +93,12 @@
 
 		{#if navOpen}
 			<nav class="flex flex-col gap-1 border-t border-slate-800 bg-slate-950 px-4 py-3 text-sm font-medium text-slate-300 md:hidden">
-				<a href="#services" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Services</a>
-				<a href="#builds" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Builds</a>
-				<a href="#service-area" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Service Area</a>
-				<a href="#contact" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Contact</a>
-				<a
-					href="#contact"
-					class="mt-2 rounded-full bg-cyan-500 px-4 py-2 text-center font-semibold text-slate-950"
-					onclick={() => (navOpen = false)}
-				>
-					Request an Appointment
+				<a href="/#services" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Services</a>
+				<a href="/#builds" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Builds</a>
+				<a href="/#service-area" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Service Area</a>
+				<a href="/contact" class="rounded px-2 py-2 hover:bg-slate-900" onclick={() => (navOpen = false)}>Contact</a>
+				<a href="tel:{phoneHref}" class="mt-2 rounded-full bg-cyan-500 px-4 py-2 text-center font-semibold text-slate-950">
+					Call/Text {phoneDisplay}
 				</a>
 				<a
 					href="mailto:{emailAddress}"
