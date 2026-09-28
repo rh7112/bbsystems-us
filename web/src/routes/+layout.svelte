@@ -43,6 +43,18 @@
 	</script>
 
 	<script type="module" src="https://cdn.jsdelivr.net/gh/rh7112/hurd-footer@main/hurd-footer.js"></script>
+
+	<!-- Cloudflare Web Analytics -- token hardcoded, a public client-side
+		value by design. static/_headers' CSP allows both
+		static.cloudflareinsights.com (script-src) and
+		cloudflareinsights.com (connect-src, the reporting endpoint) --
+		missing either one fails silently with zero visits ever showing
+		up (ryans-portfolio#95). -->
+	<script
+		type="module"
+		src="https://static.cloudflareinsights.com/beacon.min.js"
+		data-cf-beacon={JSON.stringify({ token: 'a9e412a3917645aebfc610e0cb089892' })}
+	></script>
 </svelte:head>
 
 <div class="flex min-h-screen flex-col bg-slate-950 text-slate-100">
