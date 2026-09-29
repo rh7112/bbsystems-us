@@ -171,6 +171,6 @@
 
 	<hurd-footer
 		tagline="BBSystems.US — IT Consulting, PC Repair & Custom Computers"
-		link-href="https://ryan.hurd.cc"
+		link-href="https://hurd.cc"
 	></hurd-footer>
 </div>
