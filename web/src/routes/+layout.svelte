@@ -151,7 +151,16 @@
 					<li>
 						<a href="mailto:{emailAddress}" class="transition hover:text-cyan-400">Email: {emailAddress}</a>
 					</li>
-					<li>820 W Tower St, Pierceton, IN 46562</li>
+					<li>
+						<a
+							href="https://maps.app.goo.gl/hNE1DM1Uy4cAfbpw7"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="transition hover:text-cyan-400"
+						>
+							820 W Tower St, Pierceton, IN 46562
+						</a>
+					</li>
 				</ul>
 			</div>
 
@@ -163,11 +172,11 @@
 				</ul>
 			</div>
 		</div>
-
-		<div class="border-t border-slate-800 px-4 py-4 text-center text-xs text-slate-500 sm:px-6">
-			&copy; {new Date().getFullYear()} BBSystems.US. All rights reserved.
-		</div>
 	</footer>
 
+	<!-- Copyright/company name shown here, not duplicated above -- hurd-footer
+		 auto-renders "© <year> <tagline>", which already covers what a
+		 separate "© year BBSystems.US. All rights reserved." bar here used
+		 to repeat. -->
 	<hurd-footer tagline="BBSystems.US — IT Consulting, PC Repair & Custom Computers"></hurd-footer>
 </div>
