@@ -169,8 +169,5 @@
 		</div>
 	</footer>
 
-	<hurd-footer
-		tagline="BBSystems.US — IT Consulting, PC Repair & Custom Computers"
-		link-href="https://hurd.cc"
-	></hurd-footer>
+	<hurd-footer tagline="BBSystems.US — IT Consulting, PC Repair & Custom Computers"></hurd-footer>
 </div>
