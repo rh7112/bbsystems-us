@@ -74,10 +74,10 @@
 
 			<div class="hidden items-center gap-3 md:flex">
 				<a
-					href="mailto:{emailAddress}"
+					href="/contact"
 					class="rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-400 hover:text-cyan-400"
 				>
-					Email Us
+					Contact Us
 				</a>
 				<a
 					href="/#contact"
@@ -113,10 +113,11 @@
 					Call/Text {phoneDisplay}
 				</a>
 				<a
-					href="mailto:{emailAddress}"
+					href="/contact"
 					class="rounded-full border border-slate-700 px-4 py-2 text-center font-semibold text-slate-100"
+					onclick={() => (navOpen = false)}
 				>
-					Email Us
+					Contact Us
 				</a>
 			</nav>
 		{/if}

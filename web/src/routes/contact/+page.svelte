@@ -9,6 +9,7 @@
 	let contactEmail = $state('');
 	let subject = $state('');
 	let message = $state('');
+	let hasPcPartPickerList = $state(false);
 	let pcPartPickerUrl = $state('');
 	let status: 'idle' | 'sending' | 'sent' | 'error' = $state('idle');
 	let errorMessage = $state('');
@@ -43,6 +44,7 @@
 			contactEmail = '';
 			subject = '';
 			message = '';
+			hasPcPartPickerList = false;
 			pcPartPickerUrl = '';
 		} catch (err) {
 			status = 'error';
@@ -133,25 +135,43 @@
 			</div>
 
 			<div class="rounded-lg border border-slate-800 bg-slate-900/50 p-4">
-				<label for="pcPartPickerUrl" class="mb-2 block text-sm font-medium text-slate-300">
-					PCPartPicker list URL <span class="font-normal text-slate-500">(optional)</span>
+				<label class="flex items-center gap-3">
+					<input
+						type="checkbox"
+						bind:checked={hasPcPartPickerList}
+						onchange={() => {
+							if (!hasPcPartPickerList) pcPartPickerUrl = '';
+						}}
+						class="h-4 w-4 rounded border-slate-700 bg-slate-950 text-cyan-500 focus:ring-cyan-400"
+					/>
+					<span class="text-sm font-medium text-slate-300">
+						I have a PCPartPicker list to share for a build
+					</span>
 				</label>
-				<p class="mb-3 text-xs text-slate-500">
-					Already put a build together? Build your list at
-					<a
-						href="https://pcpartpicker.com"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="text-cyan-400 hover:underline">pcpartpicker.com</a
-					>, use the Share button to get a link, and paste it here — we'll follow up with details and pricing.
-				</p>
-				<input
-					id="pcPartPickerUrl"
-					type="url"
-					placeholder="https://pcpartpicker.com/list/..."
-					bind:value={pcPartPickerUrl}
-					class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
-				/>
+
+				{#if hasPcPartPickerList}
+					<div class="mt-4">
+						<label for="pcPartPickerUrl" class="mb-2 block text-sm font-medium text-slate-300">
+							PCPartPicker list URL
+						</label>
+						<p class="mb-3 text-xs text-slate-500">
+							Build your list at
+							<a
+								href="https://pcpartpicker.com"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-cyan-400 hover:underline">pcpartpicker.com</a
+							>, use the Share button to get a link, and paste it here — we'll follow up with details and pricing.
+						</p>
+						<input
+							id="pcPartPickerUrl"
+							type="url"
+							placeholder="https://pcpartpicker.com/list/..."
+							bind:value={pcPartPickerUrl}
+							class="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-slate-100 outline-none focus:border-cyan-400"
+						/>
+					</div>
+				{/if}
 			</div>
 
 			<button
