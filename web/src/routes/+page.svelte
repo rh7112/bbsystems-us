@@ -3,6 +3,7 @@
 	const phoneHref = '+12602481269';
 	const reviewsUrl =
 		'https://www.google.com/maps/search/?api=1&query=BBSystems.US+820+W+Tower+St+Pierceton+IN+46562';
+	const mapsUrl = 'https://maps.app.goo.gl/hNE1DM1Uy4cAfbpw7';
 	const description =
 		'IT consulting, PC repair, and custom Bully Built computers serving Pierceton, IN and the surrounding area — on-site and remote support nationwide.';
 
@@ -197,5 +198,19 @@
 				Call {phoneDisplay}
 			</a>
 		</div>
+	</div>
+</section>
+
+<!-- Google Business Profile / Maps link -- requested in GH issue #21 -->
+<section class="border-t border-slate-800 bg-slate-900/30">
+	<div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+		<a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-2xl border border-slate-800 transition hover:border-cyan-400">
+			<img
+				src="/images/google-business-profile.jpg"
+				alt="BBSystems.US on Google Maps -- IT Consulting, PC Repair, Custom Computers & More, 5.0 stars"
+				loading="lazy"
+				class="w-full"
+			/>
+		</a>
 	</div>
 </section>
