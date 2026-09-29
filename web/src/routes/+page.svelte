@@ -35,9 +35,10 @@
 		{
 			name: 'Website Design & Hosting',
 			items: [
-				'Website builds start at $500–$1,000+, depending on how static vs. dynamic the site needs to be — single-page sites fall at the lower end, larger business sites can run well beyond that',
+				'Custom websites, from a single-page site to a larger business build',
 				'We design, build, and host it for you',
-				'Management & maintenance starts at $20+/mo, depending on the breadth of the project'
+				'Ongoing management & maintenance available',
+				'Reach out for pricing — every project is scoped individually'
 			]
 		}
 	];
