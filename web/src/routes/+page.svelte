@@ -201,16 +201,30 @@
 	</div>
 </section>
 
-<!-- Google Business Profile / Maps link -- requested in GH issue #21 -->
+<!-- Address + map -- requested in GH issue #21. Uses an OpenStreetMap
+     embed rather than Google Maps: no API key, no billing account, no
+     signup -- OSM's embed URL is just a bounding box + marker, entirely
+     free. The address itself still links to the Google Maps location
+     Cruz provided, since that's a plain hyperlink (no API involved) and
+     opens in whatever maps app the visitor already uses. -->
 <section class="border-t border-slate-800 bg-slate-900/30">
 	<div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-		<a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-2xl border border-slate-800 transition hover:border-cyan-400">
-			<img
-				src="/images/google-business-profile.jpg"
-				alt="BBSystems.US on Google Maps -- IT Consulting, PC Repair, Custom Computers & More, 5.0 stars"
-				loading="lazy"
-				class="w-full"
-			/>
+		<h2 class="text-3xl font-bold text-white">Find Us</h2>
+		<a
+			href={mapsUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="mt-3 inline-block text-lg text-slate-300 transition hover:text-cyan-400"
+		>
+			820 W Tower St, Pierceton, IN 46562
 		</a>
+		<div class="mt-8 overflow-hidden rounded-2xl border border-slate-800">
+			<iframe
+				title="Map showing BBSystems.US's location in Pierceton, IN"
+				src="https://www.openstreetmap.org/export/embed.html?bbox=-85.717383%2C41.198644%2C-85.709383%2C41.204644&layer=mapnik&marker=41.201644%2C-85.713383"
+				class="h-96 w-full"
+				loading="lazy"
+			></iframe>
+		</div>
 	</div>
 </section>
