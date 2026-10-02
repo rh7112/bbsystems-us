@@ -1,0 +1,28 @@
+name: Build check
+
+# Runs on pull requests so a broken build (e.g. from a dependency bump)
+# shows up on the PR instead of after merge. Deploy is deploy.yml.
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+
+      - run: npm run build
