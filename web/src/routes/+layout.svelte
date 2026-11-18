@@ -8,7 +8,21 @@
 	const phoneHref = '+12602481269';
 	const emailAddress = 'support@bbsystems.us';
 	let navOpen = $state(false);
+
+	// Sticky-header polish: a shadow once the page has scrolled, plus a thin
+	// reading-progress bar along the header's bottom edge.
+	let scrolled = $state(false);
+	let progress = $state(0);
+
+	function onScroll() {
+		const root = document.documentElement;
+		const max = root.scrollHeight - root.clientHeight;
+		scrolled = root.scrollTop > 16;
+		progress = max > 0 ? Math.min(1, root.scrollTop / max) : 0;
+	}
 </script>
+
+<svelte:window onscroll={onScroll} />
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
@@ -58,7 +72,16 @@
 </svelte:head>
 
 <div class="flex min-h-screen flex-col bg-slate-950 text-slate-100">
-	<header class="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
+	<header
+		class="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur transition-shadow {scrolled
+			? 'shadow-lg shadow-black/40'
+			: ''}"
+	>
+		<div
+			class="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-cyan-400 to-purple-500"
+			style="transform: scaleX({progress})"
+			aria-hidden="true"
+		></div>
 		<div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
 			<a href="/" class="flex items-center gap-3">
 				<img src="/images/logo.png" alt="BBSystems.US logo" class="h-10 w-10 object-contain" />
