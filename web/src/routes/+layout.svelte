@@ -151,12 +151,13 @@
 		{@render children()}
 	</main>
 
-	<footer class="relative overflow-hidden border-t border-slate-800 bg-slate-950">
-		<canvas
-			use:circuitFooter
-			class="pointer-events-none absolute inset-0 h-full w-full"
-			aria-hidden="true"
-		></canvas>
+	<div class="relative overflow-hidden bg-slate-950">
+	<canvas
+		use:circuitFooter
+		class="pointer-events-none absolute inset-0 h-full w-full"
+		aria-hidden="true"
+	></canvas>
+	<footer class="relative border-t border-slate-800">
 		<div class="relative mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
 			<div>
 				<div class="flex items-center gap-3">
@@ -208,5 +209,6 @@
 		 auto-renders "© <year> <tagline>", which already covers what a
 		 separate "© year BBSystems.US. All rights reserved." bar here used
 		 to repeat. -->
-	<hurd-footer tagline="BBSystems.US — IT Consulting, PC Repair & Custom Computers"></hurd-footer>
+	<hurd-footer class="relative block" tagline="BBSystems.US — IT Consulting, PC Repair & Custom Computers"></hurd-footer>
+	</div>
 </div>
