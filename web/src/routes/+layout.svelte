@@ -1,6 +1,7 @@
 <script lang="ts">
 	import './layout.css';
 	import favicon from '#lib/assets/favicon.png';
+	import { circuitFooter } from '#lib/circuit-footer';
 
 	let { children } = $props();
 
@@ -150,8 +151,13 @@
 		{@render children()}
 	</main>
 
-	<footer class="border-t border-slate-800 bg-slate-950">
-		<div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
+	<footer class="relative overflow-hidden border-t border-slate-800 bg-slate-950">
+		<canvas
+			use:circuitFooter
+			class="pointer-events-none absolute inset-0 h-full w-full"
+			aria-hidden="true"
+		></canvas>
+		<div class="relative mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
 			<div>
 				<div class="flex items-center gap-3">
 					<img src="/images/logo.png" alt="BBSystems.US logo" class="h-9 w-9 object-contain" />
